@@ -26,11 +26,11 @@ function Calculator() {
             if (myArr[i] === "+") {
               numArr.push(a + b);
             } else if (myArr[i] === "-") {
-              numArr.push(b - a);
+              numArr.push(a - b);
             } else if (myArr[i] === "*") {
               numArr.push(a * b);
             } else if (myArr[i] === "/") {
-              numArr.push(b / a);
+              numArr.push(a / b);
             } else if (myArr[i] === "^") {
               numArr.push(Math.pow(b, a));
             }
