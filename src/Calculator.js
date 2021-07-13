@@ -3,12 +3,14 @@ import React, { useState } from "react";
 function Calculator() {
   const [input, setInput] = useState("");
   const [msg, setMsg] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const compute = () => {
+    setMsg("");
     if (input === "") {
       setMsg("You did not enter anything");
     } else {
-      if (input.match(/^[a-zA-Z]+$/)) {
+      if (input.match(/^[a-zA-Z]+n/)) {
         setMsg("Only numbers and aritmetic operators are valid!");
       } else {
         const myArr = input.split(",");
@@ -36,8 +38,10 @@ function Calculator() {
             }
           }
         }
-        if (tempA - 1 === tempB) {
+        console.log(tempA, tempB);
+        if (tempA - 1 === tempB && input.match(/[+,-,*,/]/)) {
           setInput(input + " = " + numArr);
+          setDisabled(true);
         } else {
           setMsg("Something went wrong! Check the number of OPERANDS!");
         }
@@ -50,6 +54,7 @@ function Calculator() {
   };
 
   const clear = () => {
+    setDisabled(false);
     setInput("");
     setMsg("");
   };
@@ -61,11 +66,17 @@ function Calculator() {
         value={input}
         onChange={onChange}
         className='input-form'
+        disabled={disabled}
       ></input>
       <button type='button' onClick={clear} className='clear'>
         Clear
       </button>
-      <button type='button' className='compute' onClick={compute}>
+      <button
+        type='button'
+        disabled={disabled}
+        className='compute'
+        onClick={compute}
+      >
         Compute
       </button>
 
