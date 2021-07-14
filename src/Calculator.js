@@ -42,8 +42,10 @@ function Calculator() {
         if (tempA - 1 === tempB && input.match(/[+,-,*,/]/)) {
           setInput(input + " = " + numArr);
           setDisabled(true);
-        } else {
+        } else if (tempA >= tempB) {
           setMsg("Something went wrong! Check the number of OPERANDS!");
+        } else {
+          setMsg("Something went wrong! Check the number of OPERATORS!");
         }
       }
     }
